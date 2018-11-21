@@ -2,6 +2,8 @@
 
 //defines a `recipes` object
 
+var recipes = {};
+
 function updateObjectWithKeyAndValue(object, key, value)
 {
     //returns an object with the orignal key value pairs and the new key value pair'
@@ -14,6 +16,8 @@ function updateObjectWithKeyAndValue(object, key, value)
     // updateObjectWithKeyAndValue(obj, 'prop2', 2)
 
     //  expect(obj['prop2']).toBe(undefined)
+    return Object.assign( {}, object, { [key], value);
+    
 }
 
 function destructivelyUpdateObjectWithKeyAndValue(object, key, value)
@@ -29,6 +33,8 @@ function destructivelyUpdateObjectWithKeyAndValue(object, key, value)
     //  expect(obj).toMatch({
     //    prop: 1,
     //    prop2: 2
+    object[key] = value;
+    return object;
 }  
 
 function deleteFromObjectByKey(object, key) {
@@ -44,6 +50,9 @@ function deleteFromObjectByKey(object, key) {
 
     //  deleteFromObjectByKey(obj, 'prop')
     //  expect(obj['prop']).toBe(1)
+    var newObj = object.assign( {}, object);
+    delete newObj[key];
+    return newObj;
 }
 
 function destructivelyDeleteFromObjectByKey(object, key)
@@ -60,4 +69,6 @@ function destructivelyDeleteFromObjectByKey(object, key)
     //  var newObj = destructivelyDeleteFromObjectByKey(obj, 'prop');
 
     //  expect(obj['prop']).toBe(undefined)
+    delete object[key];
+    return object;
 }
